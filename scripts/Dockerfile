@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.16
 LABEL maintainer "tindy.it@gmail.com"
 ARG THREADS="4"
 ARG SHA=""
@@ -30,7 +30,7 @@ RUN apk add --no-cache --virtual .build-tools git g++ build-base linux-headers c
     cd .. && \
     git clone https://github.com/ToruNiina/toml11 --depth=1 && \
     cd toml11 && \
-    cmake . && \
+    cmake -DCMAKE_CXX_STANDARD=11 . && \
     make install -j $THREADS && \
     cd .. && \
     git clone https://github.com/tindy2013/subconverter --depth=1 && \
